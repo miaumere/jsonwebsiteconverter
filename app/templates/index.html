@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JSON Page Generator</title>
+    <link rel="stylesheet" href="../static/css/reset.css" />
+    <link rel="stylesheet" href="../static/css/main.css" />
+  </head>
+  <body>
+    <h1>⌨️ Enter JSON Data</h1>
+    <p>Enter the JSON data you want to display on the generated page:</p>
+    <div class="container">
+      <form action="/generate" method="POST">
+        <textarea
+          is="highlighted-code"
+          cols="80"
+          rows="12"
+          language="json"
+          tab-size="2"
+          auto-height
+          id="jsonDataRequest"
+          name="json_data"
+        ></textarea>
+        <br />
+        <input type="submit" />
+      </form>
+
+      <div>
+        <h2>💻 Possible options</h2>
+        <p>
+          You can add the following options to the JSON data to customize the
+          generated page:
+        </p>
+        <ul>
+          <li>
+            <pre><strong>pageTitle</strong></pre>
+            The title of the generated page.
+          </li>
+          <li>
+            <pre><strong>pageContent</strong></pre>
+            The main content of the page. It consists of header, main, and
+            footer sections.
+          </li>
+          <li>
+            <pre><strong>header</strong></pre>
+            The header section of the page. Contains the title and possibly
+            other elements like a navigation bar.
+            <ul>
+              <li>
+                <pre><strong>elementType</strong></pre>
+                The type of element, for example, "header".
+              </li>
+              <li>
+                <pre><strong>text</strong></pre>
+                The text content of the header.
+              </li>
+              <li>
+                <pre><strong>textColor</strong></pre>
+                The color of the text in the header.
+              </li>
+              <li>
+                <pre><strong>backgroundColor</strong></pre>
+                The background color of the header.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <pre><strong>main</strong></pre>
+            The main content section of the page. It can contain multiple
+            articles or sections with their respective content.
+            <ul>
+              <li>
+                <pre><strong>elementType</strong></pre>
+                The type of element, for example, "main".
+              </li>
+              <li>
+                <pre><strong>articles</strong></pre>
+                A list of articles or sections in the main content.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <pre><strong>footer</strong></pre>
+            The footer section of the page. Usually contains copyright
+            information, contact details, etc.
+            <ul>
+              <li>
+                <pre><strong>elementType</strong></pre>
+                The type of element, for example, "footer".
+              </li>
+              <li>
+                <pre><strong>text</strong></pre>
+                The text content of the footer.
+              </li>
+              <li>
+                <pre><strong>textColor</strong></pre>
+                The color of the text in the footer.
+              </li>
+              <li>
+                <pre><strong>backgroundColor</strong></pre>
+                The background color of the footer.
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          Additionally, each article or section in the main content can have the
+          following options:
+        </p>
+        <ul>
+          <li>
+            <pre><strong>sectionTitle</strong></pre>
+            The title of the article or section.
+          </li>
+          <li>
+            <pre><strong>sectionContent</strong></pre>
+            The content of the article or section. This can be a list of divs,
+            images, or other elements.
+          </li>
+          <li>
+            <pre><strong>layout</strong></pre>
+            The layout of the section content. Possible values are "stacked"
+            (elements are stacked vertically) and "flex" (elements are displayed
+            in a row).
+          </li>
+        </ul>
+        <p>Each div in the section content can have the following options:</p>
+        <ul>
+          <li>
+            <pre><strong>elementType</strong></pre>
+            The type of element, for example, "div" or "img".
+          </li>
+          <li>
+            <pre><strong>content</strong></pre>
+            The content of the div (text or HTML).
+          </li>
+          <li>
+            <pre><strong>textColor</strong></pre>
+            The color of the text in the div.
+          </li>
+          <li>
+            <pre><strong>backgroundColor</strong></pre>
+            The background color of the div.
+          </li>
+        </ul>
+        <p>
+          Additionally, if the element type is "img", it can have the following
+          options:
+        </p>
+        <ul>
+          <li>
+            <pre><strong>src</strong></pre>
+            The URL of the image.
+          </li>
+          <li>
+            <pre><strong>alt</strong></pre>
+            The alt text of the image.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <script type="module">
+      (async ({ chrome, netscape }) => {
+        if (!chrome && !netscape)
+          await import("https://unpkg.com/@ungap/custom-elements");
+
+        const { default: HighlightedCode } = await import(
+          "https://unpkg.com/highlighted-code"
+        );
+        HighlightedCode.useTheme("github-dark");
+      })(self);
+    </script>
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>
