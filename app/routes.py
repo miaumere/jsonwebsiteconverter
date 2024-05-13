@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import request, render_template
 from app import app
 from app.html_generator import HTMLGenerator
 
